@@ -1,0 +1,16 @@
+<h2>🌿 Lista de Plantas Medicinales</h2>
+
+<div class="grid">
+  <div class="card" *ngFor="let planta of plantas">
+    <img *ngIf="planta.imagenUrl" [src]="planta.imagenUrl" alt="{{ planta.nombre }}">
+    <h3>{{ planta.nombre }}</h3>
+    <p><strong>Región:</strong> {{ planta.region }}</p>
+    <p><strong>Usos:</strong> {{ planta.usos }}</p>
+    <p>{{ planta.descripcion }}</p>
+    <button>Editar</button>
+    <button>Eliminar</button>
+    <button *ngIf="planta.id" (click)="eliminarPlanta(planta.id)">Eliminar</button>
+
+
+  </div>
+</div>
