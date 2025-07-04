@@ -1,1 +1,11 @@
-<p>login.component works!</p>
+<h2>Iniciar Sesión</h2>
+
+<form [formGroup]="form" (ngSubmit)="login()">
+  <label>Email:</label>
+  <input formControlName="email" type="email" />
+
+  <label>Contraseña:</label>
+  <input formControlName="password" type="password" />
+
+  <button type="submit">Ingresar</button>
+</form>

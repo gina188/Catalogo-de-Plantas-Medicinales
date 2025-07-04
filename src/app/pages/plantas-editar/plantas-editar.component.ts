@@ -1,32 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { PlantasService } from '../../services/plantas.service';
 import { PlantaMedicinal } from '../../models/planta.model';
 import { CloudinaryService } from '../../services/cloudinary.service';
 
 @Component({
-  selector: 'app-plantas-form',
+  selector: 'app-plantas-editar',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './plantas-form.component.html',
-  styleUrls: ['./plantas-form.component.css']
+  templateUrl: './plantas-editar.component.html',
+  styleUrls: ['./plantas-editar.component.css'],
+  imports: [CommonModule, ReactiveFormsModule]
 })
-export class PlantasFormComponent implements OnInit {
+export class PlantasEditarComponent implements OnInit {
   plantaForm!: FormGroup;
+  plantaId!: string;
+  imagenPreview: string | null = null;
   imagenCargando = false;
 
   constructor(
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private plantasService: PlantasService,
     private cloudinaryService: CloudinaryService,
-    private router: Router,
-    private route: ActivatedRoute 
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.plantaId = this.route.snapshot.params['id'];
+
     this.plantaForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', [Validators.required, Validators.minLength(10)]],
@@ -34,40 +39,45 @@ export class PlantasFormComponent implements OnInit {
       region: ['', Validators.required],
       imagenUrl: ['']
     });
-  
-    
+
+    this.plantasService.getPlantaById(this.plantaId).subscribe((data) => {
+      if (data) {
+        this.plantaForm.patchValue(data);
+        this.imagenPreview = data.imagenUrl ?? null;
+      }
+    });
   }
 
-
-  onFileSelected(event: any) {
+  subirImagen(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.imagenCargando = true;
       this.cloudinaryService.uploadImage(file).subscribe({
         next: (res: any) => {
           this.plantaForm.patchValue({ imagenUrl: res.secure_url });
+          this.imagenPreview = res.secure_url;
           this.imagenCargando = false;
         },
         error: (err) => {
-          console.error('❌ Error al subir imagen:', err);
+          console.error('Error al subir imagen:', err);
+          alert('❌ Error al subir la imagen');
           this.imagenCargando = false;
-          alert('Error al subir la imagen');
         }
       });
     }
   }
 
-  guardar() {
+  actualizar() {
     if (this.plantaForm.valid) {
-      const nuevaPlanta: PlantaMedicinal = this.plantaForm.value;
-      this.plantasService.addPlanta(nuevaPlanta)
+      const plantaActualizada: PlantaMedicinal = this.plantaForm.value;
+      this.plantasService.updatePlanta(this.plantaId, plantaActualizada)
         .then(() => {
-          alert('✅ Planta registrada');
+          alert('✅ Planta actualizada');
           this.router.navigate(['/plantas']);
         })
-        .catch(error => {
-          console.error('❌ Error al registrar en Firebase:', error);
-          alert('Error al registrar la planta.');
+        .catch((error) => {
+          console.error('❌ Error al actualizar:', error);
+          alert('Error al actualizar la planta');
         });
     } else {
       alert('❌ El formulario no es válido');

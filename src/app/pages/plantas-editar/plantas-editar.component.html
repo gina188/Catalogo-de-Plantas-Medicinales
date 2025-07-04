@@ -1,0 +1,29 @@
+<h2>✏️ Editar Planta Medicinal</h2>
+
+<form [formGroup]="plantaForm" (ngSubmit)="actualizar()">
+  <label>Nombre:</label>
+  <input type="text" formControlName="nombre" />
+
+  <label>Descripción:</label>
+  <textarea formControlName="descripcion"></textarea>
+
+  <label>Usos:</label>
+  <input type="text" formControlName="usos" />
+
+  <label>Región:</label>
+  <input type="text" formControlName="region" />
+
+  <label>Imagen:</label>
+  <input type="file" (change)="subirImagen($event)" />
+  <div *ngIf="imagenCargando">Subiendo imagen...</div>
+
+  <img
+    *ngIf="imagenPreview"
+    [src]="imagenPreview"
+    alt="Imagen actual"
+    width="100"
+    style="margin-top: 10px; border-radius: 8px;"
+  />
+
+  <button type="submit" [disabled]="imagenCargando">Guardar Cambios</button>
+</form>

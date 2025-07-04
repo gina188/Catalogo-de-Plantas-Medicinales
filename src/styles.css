@@ -1,33 +1,18 @@
-nav {
-  background-color: #2e7d32; /* verde oscuro */
-  color: white;
-  padding: 15px 30px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  --primary-color: #2e7d32;
+  --accent-color: #c8e6c9;
+  --text-color: #333;
+  --bg-light: #f5f5f5;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-nav .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav h1 {
-  font-size: 20px;
-  font-weight: bold;
+body {
+  font-family: 'Inter', sans-serif;
   margin: 0;
-}
-
-nav a {
-  color: white;
-  margin-left: 20px;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: #c8e6c9;
-}
-nav a {
-  cursor: pointer;
+  padding: 0;
+  background-color: var(--bg-light);
+  color: var(--text-color);
 }

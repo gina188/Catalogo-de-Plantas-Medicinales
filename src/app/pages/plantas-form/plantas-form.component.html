@@ -1,36 +1,22 @@
+<h2>🌿 Registrar Planta Medicinal</h2>
+
 <form [formGroup]="plantaForm" (ngSubmit)="guardar()">
-    <label>Nombre:
-      <input type="text" formControlName="nombre" />
-    </label>
-    <div *ngIf="plantaForm.get('nombre')?.invalid && plantaForm.get('nombre')?.touched">
-      El nombre es obligatorio.
-    </div>
-  
-    <label>Descripción:
-      <textarea formControlName="descripcion"></textarea>
-    </label>
-    <div *ngIf="plantaForm.get('descripcion')?.invalid && plantaForm.get('descripcion')?.touched">
-      La descripción debe tener al menos 10 caracteres.
-    </div>
-  
-    <label>Usos:
-      <input type="text" formControlName="usos" />
-    </label>
-    <div *ngIf="plantaForm.get('usos')?.invalid && plantaForm.get('usos')?.touched">
-      Los usos son obligatorios.
-    </div>
-  
-    <label>Región:
-      <input type="text" formControlName="region" />
-    </label>
-    <div *ngIf="plantaForm.get('region')?.invalid && plantaForm.get('region')?.touched">
-      La región es obligatoria.
-    </div>
-  
-    <label>Imagen URL:
-      <input type="text" formControlName="imagenUrl" />
-    </label>
-  
-    <button type="submit">Guardar</button>
-  </form>
-  
+  <label>Nombre:</label>
+  <input type="text" formControlName="nombre">
+
+  <label>Descripción:</label>
+  <textarea formControlName="descripcion"></textarea>
+
+  <label>Usos:</label>
+  <input type="text" formControlName="usos">
+
+  <label>Región:</label>
+  <input type="text" formControlName="region">
+
+  <label>Imagen:</label>
+  <input type="file" (change)="onFileSelected($event)">
+  <div *ngIf="imagenCargando">Subiendo imagen...</div>
+  <img *ngIf="plantaForm.value.imagenUrl" [src]="plantaForm.value.imagenUrl" alt="Previsualización" width="100">
+
+  <button type="submit" [disabled]="imagenCargando">Guardar</button>
+</form>

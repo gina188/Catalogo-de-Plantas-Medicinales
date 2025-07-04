@@ -1,0 +1,70 @@
+/* Estilo general del navbar */
+.navbar {
+  background-color: #2e7d32;
+  color: white;
+  padding: 12px 24px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Contenedor flex */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.navbar-logo h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Enlaces */
+.navbar-links a,
+.navbar-actions a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-links a:hover,
+.navbar-actions a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e8f5e9;
+}
+
+/* Enlace activo */
+.active {
+  border-bottom: 2px solid #c8e6c9;
+}
+
+/* Responsive: vista móvil */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links,
+  .navbar-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-links a,
+  .navbar-actions a {
+    margin: 5px 0;
+  }
+}

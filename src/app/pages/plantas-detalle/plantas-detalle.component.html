@@ -1,1 +1,7 @@
-<p>plantas-detalle.component works!</p>
+<div class="detalle" *ngIf="planta">
+  <img [src]="planta.imagenUrl" alt="{{ planta.nombre }}">
+  <h2>{{ planta.nombre }}</h2>
+  <p><strong>Región:</strong> {{ planta.region }}</p>
+  <p><strong>Usos:</strong> {{ planta.usos }}</p>
+  <p><strong>Descripción:</strong> {{ planta.descripcion }}</p>
+</div>
