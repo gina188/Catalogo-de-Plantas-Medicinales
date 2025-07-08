@@ -1,5 +1,5 @@
 .hero {
-  background: url('/assets/plantas-fondo.jpg') no-repeat center center/cover;
+  background: url('https://i.pinimg.com/736x/ea/45/fb/ea45fbf83d2604bd616d70b106f9c318.jpg') no-repeat center center/cover;
   color: white;
   text-align: center;
   padding: 100px 20px;
@@ -8,7 +8,7 @@
 
 .hero::before {
   content: "";
-  background-color: rgba(0, 100, 0, 0.6);
+  background-color: rgba(0, 100, 0, 0.25); /* Menos opacidad */
   position: absolute;
   top: 0;
   left: 0;
@@ -24,14 +24,19 @@
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-family: 'Pacifico', cursive;
+  font-size: 3.5rem;
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
   margin-bottom: 20px;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+
+.hero {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
 }
+
 
 .btn-cta {
   background-color: #2e7d32;

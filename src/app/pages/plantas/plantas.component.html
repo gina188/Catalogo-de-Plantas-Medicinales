@@ -6,7 +6,12 @@
     <option *ngFor="let region of regionesUnicas" [value]="region">{{ region }}</option>
   </select>
 
-  <input type="text" [(ngModel)]="terminoBusqueda" placeholder="🔍 Buscar planta..." />
+  <input
+  type="text"
+  [(ngModel)]="terminoBusqueda"
+  placeholder="🔍 Buscar planta..."
+  class="input-busqueda"
+/>
 </div>
 
 <div class="grid">
