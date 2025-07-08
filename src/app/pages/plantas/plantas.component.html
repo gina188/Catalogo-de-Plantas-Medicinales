@@ -1,18 +1,41 @@
 <h2>🌿 Lista de Plantas Medicinales</h2>
 
-<div class="grid">
-  <div class="card" *ngFor="let planta of plantas">
-    <a [routerLink]="['/plantas', planta.id]">
-      <img *ngIf="planta.imagenUrl" [src]="planta.imagenUrl" alt="{{ planta.nombre }}">
-    </a>
-    <h3>{{ planta.nombre }}</h3>
-<div class="actions">
-  <a [routerLink]="['/plantas/editar', planta.id]">
-  <button class="btn-editar">Editar</button>
-</a>
+<div class="filtros-container">
+  <select [(ngModel)]="filtroRegion">
+    <option value="">🌎 Todas las regiones</option>
+    <option *ngFor="let region of regionesUnicas" [value]="region">{{ region }}</option>
+  </select>
 
-  <button *ngIf="planta.id" class="btn-eliminar" (click)="eliminarPlanta(planta.id)">Eliminar</button>
+  <input type="text" [(ngModel)]="terminoBusqueda" placeholder="🔍 Buscar planta..." />
 </div>
 
+<div class="grid">
+  <div
+    class="card"
+    *ngFor="let planta of plantasFiltradas"
+
+  >
+    <a [routerLink]="['/plantas', planta.id]">
+      <img
+        *ngIf="planta.imagenUrl"
+        [src]="planta.imagenUrl"
+        alt="{{ planta.nombre }}"
+      />
+    </a>
+
+    <h3>{{ planta.nombre }}</h3>
+
+<div class="actions" *ngIf="(rol$ | async) === 'admin'">
+  <a [routerLink]="['/plantas/editar', planta.id]">
+    <button class="btn-editar">Editar</button>
+  </a>
+  <button
+    *ngIf="planta.id"
+    class="btn-eliminar"
+    (click)="eliminarPlanta(planta.id)"
+  >
+    Eliminar
+  </button>
+</div>
   </div>
 </div>

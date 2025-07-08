@@ -68,3 +68,13 @@
     margin: 5px 0;
   }
 }
+.logout-link {
+  cursor: pointer;
+  color: #e53935; /* rojo opcional */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logout-link:hover {
+  text-decoration: underline;
+}

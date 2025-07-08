@@ -4,17 +4,19 @@
       <h1>🌿 Catálogo de Plantas</h1>
     </div>
 
-    <div class="navbar-links">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
-      <a routerLink="/plantas" routerLinkActive="active">Plantas</a>
-      
-      <a *ngIf="auth.user$ | async" routerLink="/plantas/nueva" routerLinkActive="active">➕ Agregar</a>
-    </div>
+<div class="navbar-links">
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+  <a routerLink="/plantas" routerLinkActive="active">Plantas</a>
 
-    <div class="navbar-actions">
-      <a *ngIf="!(auth.user$ | async)" routerLink="/login" routerLinkActive="active">Iniciar sesión</a>
-      <a *ngIf="!(auth.user$ | async)" routerLink="/registro" routerLinkActive="active">Registro</a>
-      <a *ngIf="auth.user$ | async" (click)="auth.logout()">Cerrar sesión</a>
-    </div>
+  <a *ngIf="(rol$ | async) === 'admin'" routerLink="/plantas/nueva" routerLinkActive="active">➕ Agregar</a>
+</div>
+
+<div class="navbar-actions">
+  <a *ngIf="!(user$ | async)" routerLink="/login" routerLinkActive="active">Iniciar sesión</a>
+  <a *ngIf="!(user$ | async)" routerLink="/registro" routerLinkActive="active">Registro</a>
+  <a *ngIf="user$ | async" class="logout-link" (click)="cerrarSesion()">Cerrar sesión</a>
+
+</div>
+
   </div>
 </nav>

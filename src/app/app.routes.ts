@@ -17,7 +17,10 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'plantas/:id', component: PlantasDetalleComponent },
- 
+  {
+    path: 'plantas',
+    loadChildren: () => import('./pages/plantas/plantas.module').then(m => m.PlantasModule)
+  },
   { path: 'plantas/editar/:id', component: PlantasEditarComponent },
   { path: '**', redirectTo: '' }
 ];

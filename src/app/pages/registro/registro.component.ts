@@ -27,17 +27,17 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  registrarse() {
-    if (this.form.valid) {
-      const { email, password } = this.form.value;
-      this.auth.register(email!, password!)
-        .then(() => {
-          alert('Registro exitoso');
-          this.router.navigate(['/plantas']);
-        })
-        .catch((err: any) => alert('Error: ' + err.message));
-    } else {
-      alert('Completa correctamente el formulario.');
-    }
+registrarse() {
+  if (this.form.valid) {
+    const { email, password } = this.form.value;
+    this.auth.registerConRol(email!, password!, 'usuario')  // 👈 Usa el nuevo método
+      .then(() => {
+        alert('✅ Registro exitoso');
+        this.router.navigate(['/plantas']);
+      })
+      .catch((err: any) => alert('❌ Error: ' + err.message));
+  } else {
+    alert('Completa correctamente el formulario.');
   }
+}
 }
