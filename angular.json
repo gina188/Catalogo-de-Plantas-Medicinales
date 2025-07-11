@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "catalogo-peliculas1": {
+    "catalogo-de-plantas-medicinales": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "baseHref": "/Catalogo-de-Plantas-Medicinales/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"

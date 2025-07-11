@@ -6,6 +6,13 @@
     <option *ngFor="let region of regionesUnicas" [value]="region">{{ region }}</option>
   </select>
 
+  <select [(ngModel)]="ordenAlfabetico">
+  <option value="">🔤 Sin orden</option>
+  <option value="asc">A-Z</option>
+  <option value="desc">Z-A</option>
+</select>
+
+
   <input
   type="text"
   [(ngModel)]="terminoBusqueda"

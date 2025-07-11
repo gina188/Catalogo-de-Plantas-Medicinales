@@ -5,8 +5,8 @@ import { PlantaMedicinal } from '../../models/planta.model';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../services/auth.service'; // ✅ IMPORTADO
-import { map } from 'rxjs/operators'; // ✅ IMPORTADO
+import { AuthService } from '../../services/auth.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-plantas',
@@ -19,11 +19,12 @@ export class PlantasComponent implements OnInit {
   plantas: PlantaMedicinal[] = [];
   terminoBusqueda: string = '';
   filtroRegion: string = '';
+  ordenAlfabetico: string = ''; // ✅ NUEVA PROPIEDAD
   rol$!: Observable<string>;
 
   constructor(
     private plantasService: PlantasService,
-    private auth: AuthService // ✅ INYECTADO
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +57,7 @@ export class PlantasComponent implements OnInit {
   }
 
   get plantasFiltradas() {
-    return this.plantas.filter(p => {
+    let filtradas = this.plantas.filter(p => {
       const coincideBusqueda =
         p.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
         p.usos.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
@@ -67,5 +68,14 @@ export class PlantasComponent implements OnInit {
 
       return coincideBusqueda && coincideRegion;
     });
+
+    // ✅ Orden alfabético
+    if (this.ordenAlfabetico === 'asc') {
+      filtradas = filtradas.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    } else if (this.ordenAlfabetico === 'desc') {
+      filtradas = filtradas.sort((a, b) => b.nombre.localeCompare(a.nombre));
+    }
+
+    return filtradas;
   }
 }
