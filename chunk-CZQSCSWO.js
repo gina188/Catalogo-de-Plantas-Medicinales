@@ -1,0 +1,1 @@
+import{F as i,P as m,d as r,da as n,ga as o,n as e}from"./chunk-IHDOXVZ6.js";var a=[{path:"",component:o}],p=class t{static \u0275fac=function(s){return new(s||t)};static \u0275mod=e({type:t});static \u0275inj=r({imports:[i,n,o,m.forChild(a)]})};export{p as PlantasModule};
