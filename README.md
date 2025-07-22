@@ -1,9 +1,5 @@
 
-Aquí tienes un ejemplo completo y bien estructurado de tu archivo `README.md` para tu proyecto Angular **Catálogo de Plantas Medicinales**:
 
----
-
-````markdown
 # 🌿 Catálogo de Plantas Medicinales
 
 Aplicación web desarrollada con Angular que permite visualizar, registrar y administrar información sobre plantas medicinales. Los usuarios pueden autenticarse para acceder a funcionalidades como agregar, editar o eliminar registros. La aplicación está conectada a Firebase (Firestore, Authentication y Hosting).
